@@ -11,9 +11,9 @@ export class ArticleController {
       test() {
         return this.articleService.test();
       }
-    // Get all articles
+    // Get all articles/articles by sepractice/articles by sepractice and seclaim
     @Get('/')
-      async getByPractice(@Query('sepractice') sepractice: string) {
+      async getByPractice(@Query('sepractice') sepractice: string,@Query('seclaim') seclaim: string) {
         if(!sepractice || sepractice.trim() === ''){
           try{ return this.articleService.findAll()
             } catch {
@@ -23,7 +23,7 @@ export class ArticleController {
             },HttpStatus.NOT_FOUND,
             {cause:error});
           }
-        } else {
+        } else if (!seclaim || seclaim.trim() === ''){
           try {
           const articles = await this.articleService.findByPractice(sepractice);
             if (!articles || articles.length === 0) {
@@ -39,23 +39,22 @@ export class ArticleController {
             HttpStatus.INTERNAL_SERVER_ERROR,
           );
         }
-      }
-    }
-
-
-
-      async findAll() {
+      } else {
         try {
-          return this.articleService.findAll();
-        } catch {
-          throw new HttpException(
-        {
-          status: HttpStatus.NOT_FOUND,
-          error: 'No Article found',
-        },
-        HttpStatus.NOT_FOUND,
-        { cause: error },
-        );
+          const articles = await this.articleService.findByClaimAndPractice(seclaim,sepractice);
+            if (!articles || articles.length === 0) {
+            throw new HttpException('No articles found for this SE_Practice and SE_Claim', HttpStatus.NOT_FOUND);
+            }
+            return articles;
+            } catch (error) {
+            throw new HttpException(
+              {
+                status: HttpStatus.INTERNAL_SERVER_ERROR,
+                error: 'An error occurred while fetching articles',
+              },
+            HttpStatus.INTERNAL_SERVER_ERROR,
+          );
+        }
       }
     }
     // Get one article via id

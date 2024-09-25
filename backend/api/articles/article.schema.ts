@@ -5,7 +5,7 @@ export type ArticleDocument = HydratedDocument<Article>;
 
 @Schema()
 export class Article {
- @Prop({ required: true })
+@Prop({ required: true })
 title: string;
 @Prop({ required: true })
 authors: string;
