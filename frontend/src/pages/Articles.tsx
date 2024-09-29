@@ -43,22 +43,36 @@ export default function Articles() {
       <h1>Articles for {practice} - {claim}</h1>
       <br/>
       {articles.length > 0 ? (
-        <ul>
+        <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Authors</th>
+            <th>Published Date</th>
+            <th>Source</th>
+            <th>DOI</th>
+            <th>Status</th>
+            <th>Submitted Date</th>
+            <th>Update Date</th>
+            <th>Evidence Level</th>
+          </tr>
+        </thead>
+        <tbody>
           {articles.map((article, index) => (
-            <li key={index}>
-              <p>ID: {article._id}</p>
-              <p>Authors: {article.authors}</p>
-              <p>Published Date: {new Date(article.published_date).toLocaleDateString()}</p>
-              <p>Source: {article.source}</p>
-              <p>DOI: {article.DOI}</p>
-              <p>Status: {article.status}</p>
-              <p>Submitted Date: {new Date(article.submitted_date).toLocaleDateString()}</p>
-              <p>Update Date: {new Date(article.update_date).toLocaleDateString()}</p>
-              <p>Evidence Level: {article.Evidence_Level}</p>
-              <br/>
-            </li>
+            <tr key={index}>
+              <td>{article.title}</td>
+              <td>{article.authors}</td>
+              <td>{new Date(article.published_date).toLocaleDateString()}</td>
+              <td>{article.source}</td>
+              <td>{article.DOI}</td>
+              <td>{article.status}</td>
+              <td>{new Date(article.submitted_date).toLocaleDateString()}</td>
+              <td>{new Date(article.update_date).toLocaleDateString()}</td>
+              <td>{article.Evidence_Level}</td>
+            </tr>
           ))}
-        </ul>
+        </tbody>
+      </table>
       ) : (
         <p>No articles found.</p>
       )}
