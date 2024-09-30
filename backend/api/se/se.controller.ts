@@ -27,7 +27,7 @@ export class SeController {
         try {
             const se = await this.SeService.findByPractice(sepractice);
             if (!se || se.length === 0) {
-            throw new HttpException("${sepractice} does not exist", HttpStatus.NOT_FOUND);
+            throw new HttpException(`${sepractice} does not exist`, HttpStatus.NOT_FOUND);
             }
             return se;
             } catch (error) {
@@ -51,7 +51,7 @@ export class SeController {
           throw new HttpException(
         {
           status: HttpStatus.NOT_FOUND,
-          error: '${id} does not exist',
+          error: `${id} does not exist`,
         },
           HttpStatus.NOT_FOUND,
           { cause: error },

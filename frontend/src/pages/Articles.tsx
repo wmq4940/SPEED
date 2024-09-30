@@ -76,6 +76,9 @@ export default function Articles() {
       ) : (
         <p>No articles found.</p>
       )}
+      <a href="http://localhost:3000/List">
+        <button className="button">Go back to List</button>
+      </a>
     </div>
   );
 }

@@ -74,7 +74,7 @@ export default function SEPractices() {
       )}
 
 {selectedPractice && selectedClaim && (
-        <button onClick={handleSubmit}>
+        <button onClick={handleSubmit} className='button'>
           Submit
         </button>
       )}
