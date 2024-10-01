@@ -44,7 +44,8 @@ export default function SEPractices() {
   };
 
   return (
-    <div>
+    <div className='list_Wrapper'>
+    <div className='list_Display'>
       <h1>Select an SE Practice</h1>
       <select value={selectedPractice} onChange={handlePracticeSelect}>
         <option value="">Select a practice</option>
@@ -78,6 +79,7 @@ export default function SEPractices() {
           Submit
         </button>
       )}
+    </div>
     </div>
 
     

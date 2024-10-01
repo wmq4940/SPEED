@@ -49,3 +49,17 @@ body {
   outline: none;
   box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.5);
 }
+
+.list_Display {
+  display: inline-block; 
+  text-align: left; 
+  padding-left: 20px; 
+}
+
+.list_Wrapper {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
