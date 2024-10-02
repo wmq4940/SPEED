@@ -97,3 +97,60 @@ body {
 .nav-link:hover {
   color: #aaa;
 }
+
+.Detail-page {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.Detail-section {
+  margin-top: 80px;
+  margin-bottom: 30px;
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Detail-section h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #194a80;
+}
+
+.Detail-section p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.Detail-page section:last-of-type {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .Detail-page {
+    padding: 20px 10px;
+  }
+
+  .Detail-section {
+    padding: 20px;
+  }
+
+  .Detail-section h2 {
+    font-size: 24px;
+  }
+
+  .Detail-section p {
+    font-size: 16px;
+  }
+}
+
+.Button-section {
+  margin-top: 20px; 
+  text-align: center; 
+}
