@@ -1,15 +1,12 @@
 import router from 'next/router';
 import { useEffect, useState } from 'react';
-import styles from './SePractices.module.css'; // Make sure this matches the actual file path
+import styles from './SePractices.module.css'; 
+import Navbar from './navbar/Navbar';
 
 interface Practice {
   SE_Practice: string;
   SE_Claim: string[];
 }
-
-import router from 'next/router';
-import { useEffect, useState } from 'react';
-import Navbar from './navbar/Navbar';
 
 export default function SEPractices() {
   const [sePractices, setSEPractices] = useState<Practice[]>([]);
