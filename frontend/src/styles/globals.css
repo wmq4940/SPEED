@@ -25,3 +25,41 @@ body {
     text-wrap: balance;
   }
 }
+
+.button {
+  background-color: #0070f3;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #005bb5;
+}
+
+.button:active {
+  background-color: #004494;
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.5);
+}
+
+.list_Display {
+  display: inline-block; 
+  text-align: left; 
+  padding-left: 20px; 
+}
+
+.list_Wrapper {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
