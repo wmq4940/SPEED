@@ -1,10 +1,11 @@
-interface Practice {
-    SE_Practice: string;
-    SE_Claim: string[];
-  }
-
 import router from 'next/router';
 import { useEffect, useState } from 'react';
+import styles from './SEPractices.module.css'; // Import the CSS module
+
+interface Practice {
+  SE_Practice: string;
+  SE_Claim: string[];
+}
 
 export default function SEPractices() {
   const [sePractices, setSEPractices] = useState<Practice[]>([]);
@@ -24,18 +25,16 @@ export default function SEPractices() {
     };
 
     fetchData();
-  }, []); // Empty dependency array means this will only run once when the component mounts
+  }, []);
 
   const handlePracticeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPractice(e.target.value);
-    setSelectedClaim(''); // Reset selected claim when practice changes
+    setSelectedClaim('');
   };
 
   const handleClaimSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedClaim(e.target.value);
   };
-
-  const selectedPracticeObj = sePractices.find(practice => practice.SE_Practice === selectedPractice);
 
   const handleSubmit = () => {
     if (selectedPractice && selectedClaim) {
@@ -43,23 +42,32 @@ export default function SEPractices() {
     }
   };
 
-  return (
-    <div className='list_Wrapper'>
-    <div className='list_Display'>
-      <h1>Select an SE Practice</h1>
-      <select value={selectedPractice} onChange={handlePracticeSelect}>
-        <option value="">Select a practice</option>
-        {sePractices.map((practice, index) => (
-          <option key={index} value={practice.SE_Practice}>
-            {practice.SE_Practice}
-          </option>
-        ))}
-      </select>
+  const selectedPracticeObj = sePractices.find(
+    (practice) => practice.SE_Practice === selectedPractice
+  );
 
-      {selectedPractice && selectedPracticeObj && (
-        <div>
-          <h2>Select a Claim</h2>
-          <select value={selectedClaim} onChange={handleClaimSelect}>
+  return (
+    <div className={styles.container}>
+      <div className={styles.form}>
+        <select
+          value={selectedPractice}
+          onChange={handlePracticeSelect}
+          className={styles.select}
+        >
+          <option value="">Select a practice</option>
+          {sePractices.map((practice, index) => (
+            <option key={index} value={practice.SE_Practice}>
+              {practice.SE_Practice}
+            </option>
+          ))}
+        </select>
+
+        {selectedPractice && selectedPracticeObj && (
+          <select
+            value={selectedClaim}
+            onChange={handleClaimSelect}
+            className={styles.select}
+          >
             <option value="">Select a claim</option>
             {selectedPracticeObj.SE_Claim.map((claim, index) => (
               <option key={index} value={claim}>
@@ -67,21 +75,14 @@ export default function SEPractices() {
               </option>
             ))}
           </select>
-        </div>
-      )}
+        )}
 
-      {selectedClaim && (
-        <p>You selected the claim: {selectedClaim}</p>
-      )}
-
-{selectedPractice && selectedClaim && (
-        <button onClick={handleSubmit} className='button'>
-          Submit
-        </button>
-      )}
+        {selectedPractice && selectedClaim && (
+          <button onClick={handleSubmit} className={styles.button}>
+            Search
+          </button>
+        )}
+      </div>
     </div>
-    </div>
-
-    
   );
 }
