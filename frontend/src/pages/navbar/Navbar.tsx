@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import HomeIcon from './HomeImage.png';
+import styles from './Navbar.module.css'; // Importing the new CSS module
 
 const Navbar: React.FC = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false); // Dropdown state
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
   return (
-    <nav className="navbar">
+    <nav className={styles.navbar}>
       <Link href="/" passHref legacyBehavior>
         <a>
           <Image 
@@ -17,30 +24,52 @@ const Navbar: React.FC = () => {
           />
         </a>
       </Link>
-      <ul className="navbar-nav">
-        <li className="nav-item">
+      <ul className={styles.navbarNav}>
+        <li className={styles.navItem}>
           <Link href="/List" passHref legacyBehavior>
-            <a className="nav-link">Search</a>
+            <a className={styles.navLink}>Search</a>
           </Link>
         </li>
-        <li className="nav-item">
+        <li className={styles.navItem}>
           <Link href="/" passHref legacyBehavior>
-            <a className="nav-link">Moderate</a>
+            <a className={styles.navLink}>Moderate</a>
           </Link>
         </li>
-        <li className="nav-item">
+        <li className={styles.navItem}>
           <Link href="/" passHref legacyBehavior>
-            <a className="nav-link">Analyse</a>
+            <a className={styles.navLink}>Analyse</a>
           </Link>
         </li>
-        <li className="nav-item">
+        <li className={styles.navItem}>
           <Link href="/" passHref legacyBehavior>
-            <a className="nav-link">Administration</a>
+            <a className={styles.navLink}>Administration</a>
           </Link>
         </li>
-        <li className="nav-item">
+
+        {/* Submit Dropdown Menu */}
+        <li className={styles.navItem} onClick={toggleDropdown}>
+          <a className={`${styles.navLink} ${styles.dropdownToggle}`} style={{ cursor: "pointer" }}>
+            Submit
+          </a>
+          {dropdownOpen && (
+            <ul className={styles.dropdownMenu}>
+              <li>
+                <Link href="/SeForm" passHref legacyBehavior>
+                  <a className={styles.dropdownItem}>New SE Practice</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/NewClaim" passHref legacyBehavior>
+                  <a className={styles.dropdownItem}>New SE Claim</a>
+                </Link>
+              </li>
+            </ul>
+          )}
+        </li>
+
+        <li className={styles.navItem}>
           <Link href="/" passHref legacyBehavior>
-            <a className="nav-link">Log Out</a>
+            <a className={styles.navLink}>Log Out</a>
           </Link>
         </li>
       </ul>
