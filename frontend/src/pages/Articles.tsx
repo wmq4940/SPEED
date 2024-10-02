@@ -14,6 +14,7 @@ interface Article {
   SE_Practice: string;
   SE_Claim: string;
   Evidence_Level: string;
+  Details: string;
 }
 
 export default function Articles() {
@@ -21,6 +22,7 @@ export default function Articles() {
   const { practice, claim } = router.query;
 
   const [articles, setArticles] = useState<Article[]>([]);
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null); // State for selected article
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -38,8 +40,15 @@ export default function Articles() {
     fetchArticles();
   }, [practice, claim]);
 
+  const handleViewClick = (article: Article) => {
+    setSelectedArticle(article); // Set the selected article to display details
+  };
+
   return (
     <div>
+      {!selectedArticle ? (
+        // Display articles list when no article is selected
+        <div>
       <h1>Articles for {practice} - {claim}</h1>
       <br/>
       {articles.length > 0 ? (
@@ -55,6 +64,7 @@ export default function Articles() {
             <th>Submitted Date</th>
             <th>Update Date</th>
             <th>Evidence Level</th>
+            <th>View Article</th>
           </tr>
         </thead>
         <tbody>
@@ -69,6 +79,7 @@ export default function Articles() {
               <td>{new Date(article.submitted_date).toLocaleDateString()}</td>
               <td>{new Date(article.update_date).toLocaleDateString()}</td>
               <td>{article.Evidence_Level}</td>
+              <td><button onClick={() => handleViewClick(article)}>View</button></td>
             </tr>
           ))}
         </tbody>
@@ -79,6 +90,19 @@ export default function Articles() {
       <a href="http://localhost:3000/List">
         <button className="button">Go back to List</button>
       </a>
+    </div>
+      ) : (   
+        <div>
+          <div className="Detail-page">
+          <section className="Detail-section">
+          <h2>{selectedArticle.title}</h2>
+          <p><strong>Details:</strong> {selectedArticle.Details}</p>
+          </section>
+          <div className="Button-section">
+        <button onClick={() => setSelectedArticle(null)} className="button">Back to List</button>
+      </div>
+        </div></div>
+      )}
     </div>
   );
 }

@@ -7,6 +7,10 @@ interface Practice {
   SE_Claim: string[];
 }
 
+import router from 'next/router';
+import { useEffect, useState } from 'react';
+import Navbar from './navbar/Navbar';
+
 export default function SEPractices() {
   const [sePractices, setSEPractices] = useState<Practice[]>([]);
   const [selectedPractice, setSelectedPractice] = useState<string>('');
@@ -47,6 +51,7 @@ export default function SEPractices() {
   );
 
   return (
+    <> <Navbar />
     <div className={styles.container}>
       {/* Title */}
       <h1 className={styles.title}>SPEED</h1>
@@ -95,5 +100,6 @@ export default function SEPractices() {
         )}
       </div>
     </div>
+    </>
   );
 }
