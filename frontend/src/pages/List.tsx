@@ -5,6 +5,7 @@ interface Practice {
 
 import router from 'next/router';
 import { useEffect, useState } from 'react';
+import Navbar from './navbar/Navbar';
 
 export default function SEPractices() {
   const [sePractices, setSEPractices] = useState<Practice[]>([]);
@@ -44,6 +45,7 @@ export default function SEPractices() {
   };
 
   return (
+    <> <Navbar />
     <div className='list_Wrapper'>
     <div className='list_Display'>
       <h1>Select an SE Practice</h1>
@@ -81,7 +83,6 @@ export default function SEPractices() {
       )}
     </div>
     </div>
-
-    
+    </>
   );
 }

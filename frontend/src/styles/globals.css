@@ -63,3 +63,37 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 75px;
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.nav-item {
+  padding: 1rem;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #aaa;
+}
