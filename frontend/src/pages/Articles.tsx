@@ -38,8 +38,8 @@ export default function Articles() {
     fetchArticles();
   }, [practice, claim]);
 
-  const handleRowClick = (_id: string) => {
-    router.push(`/ArticleDetail/${_id}`);
+  const handleViewClick = (article: Article) => {
+    router.push(`/ArticleDetails?id=${article._id}`);
   };
 
   return (
@@ -67,7 +67,7 @@ export default function Articles() {
             {articles.map((article, index) => (
               <tr
                 key={index}
-                onClick={() => handleRowClick(article._id)}
+                onClick={() => handleViewClick(article)}
                 style={{ cursor: 'pointer', transition: 'background-color 0.3s' }}
                 onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#f0f0f0')}
                 onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '')}
