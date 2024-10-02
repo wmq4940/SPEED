@@ -14,7 +14,6 @@ interface Article {
   SE_Practice: string;
   SE_Claim: string;
   Evidence_Level: string;
-  Details: string;
 }
 
 export default function Articles() {
@@ -22,7 +21,6 @@ export default function Articles() {
   const { practice, claim } = router.query;
 
   const [articles, setArticles] = useState<Article[]>([]);
-  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null); // State for selected article
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -40,12 +38,7 @@ export default function Articles() {
     fetchArticles();
   }, [practice, claim]);
 
-  const handleViewClick = (article: Article) => {
-    setSelectedArticle(article); // Set the selected article to display details
-  };
-
   return (
-
     <div className='articles_Wrapper' style={{ textAlign: 'center', padding: '20px' }}>
       <h1 style={{ marginBottom: '20px', color: '#2c3e50', fontSize: '2em' }}>
         Articles for {practice} - {claim}
@@ -64,7 +57,6 @@ export default function Articles() {
               <th style={{ border: '3px solid #ddd', padding: '8px' ,backgroundColor: '#FFD700'}}>Submitted Date</th>
               <th style={{ border: '3px solid #ddd', padding: '8px' ,backgroundColor: '#FFD700'}}>Update Date</th>
               <th style={{ border: '3px solid #ddd', padding: '8px' ,backgroundColor: '#FFD700'}}>Evidence Level</th>
-
             </tr>
           </thead>
           <tbody>
@@ -91,19 +83,6 @@ export default function Articles() {
           Go back to List
         </button>
       </a>
-    </div>
-      ) : (   
-        <div>
-          <div className="Detail-page">
-          <section className="Detail-section">
-          <h2>{selectedArticle.title}</h2>
-          <p><strong>Details:</strong> {selectedArticle.Details}</p>
-          </section>
-          <div className="Button-section">
-        <button onClick={() => setSelectedArticle(null)} className="button">Back to List</button>
-      </div>
-        </div></div>
-      )}
     </div>
   );
 }
