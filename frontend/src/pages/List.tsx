@@ -1,7 +1,6 @@
 import router from 'next/router';
 import { useEffect, useState } from 'react';
-import styles from './SePractices.module.css'; 
-import Navbar from './navbar/Navbar';
+import styles from './SePractices.module.css'; // Make sure this matches the actual file path
 
 interface Practice {
   SE_Practice: string;
