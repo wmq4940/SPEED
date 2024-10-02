@@ -38,6 +38,10 @@ export default function Articles() {
     fetchArticles();
   }, [practice, claim]);
 
+  const handleRowClick = (_id: string) => {
+    router.push(`/ArticleDetail/${_id}`);
+  };
+
   return (
     <div className='articles_Wrapper' style={{ textAlign: 'center', padding: '20px' }}>
       <h1 style={{ marginBottom: '20px', color: '#2c3e50', fontSize: '2em' }}>
@@ -48,20 +52,26 @@ export default function Articles() {
         <table style={{ margin: '0 auto', width: '95%', borderCollapse: 'collapse' }}>
           <thead>
             <tr>
-              <th style={{ border: '3px solid #ddd', padding: '8px' ,backgroundColor: '#FFD700'}}>Title</th>
-              <th style={{ border: '3px solid #ddd', padding: '8px' ,backgroundColor: '#FFD700'}}>Authors</th>
-              <th style={{ border: '3px solid #ddd', padding: '8px' ,backgroundColor: '#FFD700'}}>Published Date</th>
-              <th style={{ border: '3px solid #ddd', padding: '8px' ,backgroundColor: '#FFD700'}}>Source</th>
-              <th style={{ border: '3px solid #ddd', padding: '8px' ,backgroundColor: '#FFD700'}}>DOI</th>
-              <th style={{ border: '3px solid #ddd', padding: '8px' ,backgroundColor: '#FFD700'}}>Status</th>
-              <th style={{ border: '3px solid #ddd', padding: '8px' ,backgroundColor: '#FFD700'}}>Submitted Date</th>
-              <th style={{ border: '3px solid #ddd', padding: '8px' ,backgroundColor: '#FFD700'}}>Update Date</th>
-              <th style={{ border: '3px solid #ddd', padding: '8px' ,backgroundColor: '#FFD700'}}>Evidence Level</th>
+              <th style={{ border: '3px solid #ddd', padding: '8px', backgroundColor: '#FFD700'}}>Title</th>
+              <th style={{ border: '3px solid #ddd', padding: '8px', backgroundColor: '#FFD700'}}>Authors</th>
+              <th style={{ border: '3px solid #ddd', padding: '8px', backgroundColor: '#FFD700'}}>Published Date</th>
+              <th style={{ border: '3px solid #ddd', padding: '8px', backgroundColor: '#FFD700'}}>Source</th>
+              <th style={{ border: '3px solid #ddd', padding: '8px', backgroundColor: '#FFD700'}}>DOI</th>
+              <th style={{ border: '3px solid #ddd', padding: '8px', backgroundColor: '#FFD700'}}>Status</th>
+              <th style={{ border: '3px solid #ddd', padding: '8px', backgroundColor: '#FFD700'}}>Submitted Date</th>
+              <th style={{ border: '3px solid #ddd', padding: '8px', backgroundColor: '#FFD700'}}>Update Date</th>
+              <th style={{ border: '3px solid #ddd', padding: '8px', backgroundColor: '#FFD700'}}>Evidence Level</th>
             </tr>
           </thead>
           <tbody>
             {articles.map((article, index) => (
-              <tr key={index}>
+              <tr
+                key={index}
+                onClick={() => handleRowClick(article._id)}
+                style={{ cursor: 'pointer', transition: 'background-color 0.3s' }}
+                onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#f0f0f0')}
+                onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '')}
+              >
                 <td style={{ border: '3px solid #ddd', padding: '8px' }}>{article.title}</td>
                 <td style={{ border: '3px solid #ddd', padding: '8px' }}>{article.authors}</td>
                 <td style={{ border: '3px solid #ddd', padding: '8px' }}>{new Date(article.published_date).toLocaleDateString()}</td>
@@ -79,7 +89,19 @@ export default function Articles() {
         <p>No articles found.</p>
       )}
       <a href="http://localhost:3000/List">
-        <button className="button" style={{ margin: '20px', padding: '10px 20px', fontSize: '1em', backgroundColor: '#FFD700', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+        <button
+          className="button"
+          style={{
+            margin: '20px',
+            padding: '10px 20px',
+            fontSize: '1em',
+            backgroundColor: '#FFD700',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+          }}
+        >
           Go back to List
         </button>
       </a>
