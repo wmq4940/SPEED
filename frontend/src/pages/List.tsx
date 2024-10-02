@@ -1,6 +1,6 @@
 import router from 'next/router';
 import { useEffect, useState } from 'react';
-import styles from './SEPractices.module.css'; // Import the CSS module
+import styles from './SePractices.module.css'; // Make sure this matches the actual file path
 
 interface Practice {
   SE_Practice: string;
@@ -48,6 +48,17 @@ export default function SEPractices() {
 
   return (
     <div className={styles.container}>
+      {/* Title */}
+      <h1 className={styles.title}>SPEED</h1>
+      
+      {/* Welcome message */}
+      <p className={styles.welcomeMessage}>
+        A searchable database of evidence about different claims regarding various SE practices.
+      </p>
+      
+      {/* Message above search */}
+      <p className={styles.searchMessage}>Please search for claims below:</p>
+
       <div className={styles.form}>
         <select
           value={selectedPractice}
