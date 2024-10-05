@@ -1,0 +1,67 @@
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #000; /* Navbar background is black */
+}
+
+.navbarNav {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.navItem {
+  position: relative;
+  margin-right: 20px;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.navLink:hover {
+  background-color: #333; /* Dark gray on hover for nav items */
+  border-radius: 4px;
+}
+
+/* Dropdown Styles */
+.dropdownToggle::after {
+  content: ' ▼';
+  font-size: 0.8rem;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #000; /* Dropdown background is black */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 10;
+  width: 200px; /* Increase width to prevent text wrapping */
+}
+
+.dropdownItem {
+  color: white; /* White text */
+  padding: 12px 16px; /* Padding for better spacing */
+  text-decoration: none;
+  font-size: 1rem; /* Keep font size at 1rem */
+  display: block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effects for dropdown items */
+.dropdownItem:hover {
+  background-color: #555; /* Medium gray on hover */
+  color: white; /* Keep text white on hover */
+}
