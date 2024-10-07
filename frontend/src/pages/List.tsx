@@ -1,5 +1,7 @@
 import router from 'next/router';
 import { useEffect, useState } from 'react';
+import styles from './SePractices.module.css'; 
+import Navbar from './navbar/Navbar';
 
 interface Practice {
   SE_Practice: string;
@@ -12,6 +14,7 @@ export default function SEPractices() {
   const [selectedClaim, setSelectedClaim] = useState<string>('');
 
   useEffect(() => {
+    // Fetch data from the API
     const fetchData = async () => {
       try {
         const response = await fetch('http://localhost:8000/api/se');
@@ -34,20 +37,36 @@ export default function SEPractices() {
     setSelectedClaim(e.target.value);
   };
 
-  const selectedPracticeObj = sePractices.find(practice => practice.SE_Practice === selectedPractice);
-
   const handleSubmit = () => {
     if (selectedPractice && selectedClaim) {
       router.push(`/Articles?practice=${selectedPractice}&claim=${selectedClaim}`);
     }
   };
 
+  const selectedPracticeObj = sePractices.find(
+    (practice) => practice.SE_Practice === selectedPractice
+  );
+
   return (
-    <div className='list_Wrapper'>
-      <div className='list_Display' style={{ textAlign: 'center', padding: '20px' }}>
-        <h1 style={{ marginBottom: '20px', color: '#2c3e50', fontSize: '2em' }}>Select a Software Engineering Practice</h1>
-        
-        <select value={selectedPractice} onChange={handlePracticeSelect} style={{ margin: '10px', padding: '10px', fontSize: '1em' }}>
+    <> <Navbar />
+    <div className={styles.container}>
+      {/* Title */}
+      <h1 className={styles.title}>SPEED</h1>
+      
+      {/* Welcome message */}
+      <p className={styles.welcomeMessage}>
+        A searchable database of evidence about different claims regarding various SE practices.
+      </p>
+      
+      {/* Message above search */}
+      <p className={styles.searchMessage}>Please search for claims below:</p>
+
+      <div className={styles.form}>
+        <select
+          value={selectedPractice}
+          onChange={handlePracticeSelect}
+          className={styles.select}
+        >
           <option value="">Select a practice</option>
           {sePractices.map((practice, index) => (
             <option key={index} value={practice.SE_Practice}>
@@ -57,29 +76,27 @@ export default function SEPractices() {
         </select>
 
         {selectedPractice && selectedPracticeObj && (
-          <div>
-            <h2>Select a Claim</h2>
-            <select value={selectedClaim} onChange={handleClaimSelect} style={{ margin: '10px', padding: '10px', fontSize: '1em' }}>
-              <option value="">Select a claim</option>
-              {selectedPracticeObj.SE_Claim.map((claim, index) => (
-                <option key={index} value={claim}>
-                  {claim}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-
-        {selectedClaim && (
-          <p>You selected the claim: <strong>{selectedClaim}</strong></p>
+          <select
+            value={selectedClaim}
+            onChange={handleClaimSelect}
+            className={styles.select}
+          >
+            <option value="">Select a claim</option>
+            {selectedPracticeObj.SE_Claim.map((claim, index) => (
+              <option key={index} value={claim}>
+                {claim}
+              </option>
+            ))}
+          </select>
         )}
 
         {selectedPractice && selectedClaim && (
-          <button onClick={handleSubmit} className='button' style={{ margin: '10px', padding: '10px 20px', fontSize: '1em', backgroundColor: '#2980b9', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-            Submit
+          <button onClick={handleSubmit} className={styles.button}>
+            Search
           </button>
         )}
       </div>
     </div>
+    </>
   );
 }
