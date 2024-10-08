@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
           </Link>
         </li>
         <li className={styles.navItem}>
-          <Link href="/" passHref legacyBehavior>
+          <Link href="/submissionQueen" passHref legacyBehavior>
             <a className={styles.navLink}>Moderate</a>
           </Link>
         </li>
