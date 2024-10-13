@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Navbar from './navbar/Navbar';
 
 interface Article {
   _id: string;  
@@ -92,22 +93,23 @@ export default function SubmittedArticles() {
   };
 
   return (
+    <> <Navbar />
     <div>
-      <h1 style={{ fontWeight: 'bold', fontSize: '1.5em' }}>Submitted Articles</h1>
       <div style={{ 
-          position: 'absolute', 
-          top: '20px', 
-          right: '20px', 
-          maxHeight: '70vh', 
-          overflowY: 'auto', 
-          width: '450px', 
-          border: '1px solid #ccc', 
-          borderRadius: '15px', 
-          padding: '10px', 
-          backgroundColor: '#f9f9f9' 
-        }}>
+        position: 'absolute', 
+        top: '120px', 
+        right: '20px', 
+        maxHeight: '70vh', 
+        overflowY: 'auto', 
+        width: '450px', 
+        border: '1px solid #ccc', 
+        borderRadius: '15px', 
+        padding: '10px', 
+        backgroundColor: '#f9f9f9' 
+      }}>
         {articles.length > 0 ? (
-          <ul style={{ listStyle: 'none', padding: 0 }}>
+          <ul style={{ listStyle: 'none', padding: 5 }}>
+            <h1 style={{ fontWeight: 'bold', fontSize: '2.0em', margin: '8px' }}>Submitted Articles</h1>
             {articles.map((article, index) => (
               <li key={index} style={articleContainerStyle}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -184,6 +186,7 @@ export default function SubmittedArticles() {
         
       )}
     </div>
+    </>
   );
 }
 
