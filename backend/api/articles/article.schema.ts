@@ -27,6 +27,8 @@ SE_Practice: string;
 SE_Claim: string;
 @Prop()
 Evidence_Level: string;
+@Prop()
+Detail: string;
 
 
 
