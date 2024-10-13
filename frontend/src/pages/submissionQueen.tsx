@@ -92,7 +92,7 @@ export default function SubmittedArticles() {
   };
 
   return (
-    <div style={{ position: 'relative', padding: '20px', fontSize: '1em' }}>
+    <div>
       <h1 style={{ fontWeight: 'bold', fontSize: '1.5em' }}>Submitted Articles</h1>
       <div style={{ 
           position: 'absolute', 
@@ -102,7 +102,7 @@ export default function SubmittedArticles() {
           overflowY: 'auto', 
           width: '450px', 
           border: '1px solid #ccc', 
-          borderRadius: '5px', 
+          borderRadius: '15px', 
           padding: '10px', 
           backgroundColor: '#f9f9f9' 
         }}>
@@ -125,30 +125,68 @@ export default function SubmittedArticles() {
       {isModalOpen && selectedArticle && (
         <div className="modal" style={modalOverlayStyle}>
           <div className="modal-content" style={modalContentStyle}>
-            <span className="close-button" onClick={handleCloseModal}>&times;</span>
-            <h1>{selectedArticle.title}</h1>
-            <p>Authors: {selectedArticle.authors}</p>
-            <p>Published Date: {new Date(selectedArticle.published_date).toLocaleDateString()}</p>
-            <p>Source: {selectedArticle.source}</p>
-            <p>DOI: {selectedArticle.DOI}</p>
-            <p>Status: {selectedArticle.status}</p>
-            <p>Submitted Date: {new Date(selectedArticle.submitted_date).toLocaleDateString()}</p>
-            <p>Update Date: {new Date(selectedArticle.update_date).toLocaleDateString()}</p>
-            <p>SE Practice: {selectedArticle.SE_Practice}</p>
-            <p>SE Claim: {selectedArticle.SE_Claim}</p>
-            <p>Evidence Level: {selectedArticle.Evidence_Level}</p>
+            
+  <span className="close-button" onClick={handleCloseModal}>&times;</span>
+  <h1 style={{ fontSize: '1.8em' }}><b>{selectedArticle.title}</b></h1>
+  
+  <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
+    <tbody>
+      <tr>
+        <td style={{ fontWeight: 'bold', padding: '8px', borderBottom: '1px solid #ddd' }}>Authors:</td>
+        <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{selectedArticle.authors}</td>
+      </tr>
+      <tr>
+        <td style={{ fontWeight: 'bold', padding: '8px', borderBottom: '1px solid #ddd' }}>Published Date:</td>
+        <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{new Date(selectedArticle.published_date).toLocaleDateString()}</td>
+      </tr>
+      <tr>
+        <td style={{ fontWeight: 'bold', padding: '8px', borderBottom: '1px solid #ddd' }}>Source:</td>
+        <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{selectedArticle.source}</td>
+      </tr>
+      <tr>
+        <td style={{ fontWeight: 'bold', padding: '8px', borderBottom: '1px solid #ddd' }}>DOI:</td>
+        <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{selectedArticle.DOI}</td>
+      </tr>
+      <tr>
+        <td style={{ fontWeight: 'bold', padding: '8px', borderBottom: '1px solid #ddd' }}>Status:</td>
+        <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{selectedArticle.status}</td>
+      </tr>
+      <tr>
+        <td style={{ fontWeight: 'bold', padding: '8px', borderBottom: '1px solid #ddd' }}>Submitted Date:</td>
+        <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{new Date(selectedArticle.submitted_date).toLocaleDateString()}</td>
+      </tr>
+      <tr>
+        <td style={{ fontWeight: 'bold', padding: '8px', borderBottom: '1px solid #ddd' }}>Update Date:</td>
+        <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{new Date(selectedArticle.update_date).toLocaleDateString()}</td>
+      </tr>
+      <tr>
+        <td style={{ fontWeight: 'bold', padding: '8px', borderBottom: '1px solid #ddd' }}>SE Practice:</td>
+        <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{selectedArticle.SE_Practice}</td>
+      </tr>
+      <tr>
+        <td style={{ fontWeight: 'bold', padding: '8px', borderBottom: '1px solid #ddd' }}>SE Claim:</td>
+        <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{selectedArticle.SE_Claim}</td>
+      </tr>
+      <tr>
+        <td style={{ fontWeight: 'bold', padding: '8px', borderBottom: '1px solid #ddd' }}>Evidence Level:</td>
+        <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{selectedArticle.Evidence_Level}</td>
+      </tr>
+    </tbody>
+  </table>
 
-            <div>
-              <button onClick={handleApprove} className="button" style={approveButtonStyle}>Approve</button>
-              <br />
-              <button onClick={handleDeny} className="button" style={denyButtonStyle}>Deny</button>
-            </div>
+  <div style={{ marginTop: '20px' }}>
+    <button onClick={handleDeny} className="button" style={denyButtonStyle}>Deny</button> 
+    <button onClick={handleApprove} className="button" style={approveButtonStyle}>Approve</button>
+  </div>
+</div>
+
           </div>
-        </div>
+        
       )}
     </div>
   );
 }
+
 
 // Styles for the modal overlay
 const modalOverlayStyle = {
@@ -165,11 +203,12 @@ const modalOverlayStyle = {
 
 // Styles for the modal content
 const modalContentStyle = {
+  fontSize: '1.1em',
   backgroundColor: '#fff',
   padding: '30px',
-  borderRadius: '10px',
-  width: '80%',
-  maxWidth: '600px',
+  borderRadius: '15px',
+  width: '90%',
+  maxWidth: '1000px',
   textAlign: 'left' as 'left',
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
 };
@@ -180,42 +219,47 @@ const articleContainerStyle = {
   marginBottom: '10px',
   backgroundColor: '#fff',
   border: '1px solid #e0e0e0',
-  borderRadius: '5px',
+  borderRadius: '15px',
   transition: 'background-color 0.3s ease',
   cursor: 'pointer',
 };
 
 // Button styles
 const buttonStyle = {
-  padding: '6px 10px',
+  padding: '6px 15px',
   marginTop: '10px',
   backgroundColor: '#007bff',
   color: '#fff',
   border: 'none',
-  borderRadius: '10px',
+  borderRadius: '15px',
   cursor: 'pointer',
-  fontSize: '0.8em',
+  fontSize: '0.9em',
+  fontWeight: 'bold',
 };
 
 const approveButtonStyle = {
-  padding: '8px 15px',
+  padding: '6px 20px',
+  marginTop: '10px',
   backgroundColor: 'green',
-  color: 'white',
+  color: '#fff',
   border: 'none',
-  borderRadius: '5px',
+  borderRadius: '15px',
   cursor: 'pointer',
-  marginRight: '10px',
-  fontSize: '0.9em',
+  fontSize: '1.0em',
+  fontWeight: 'bold',
 };
 
 const denyButtonStyle = {
-  padding: '8px 15px',
+ padding: '6px 32px',
+  marginTop: '10px',
   backgroundColor: 'red',
-  color: 'white',
+  color: '#fff',
   border: 'none',
-  borderRadius: '5px',
+  borderRadius: '15px',
   cursor: 'pointer',
-  fontSize: '0.9em',
+  fontSize: '1.0em',
+  fontWeight: 'bold',
+  marginRight: '15px',
 };
 
 // Adding hover effect
