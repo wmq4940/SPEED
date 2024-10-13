@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 interface Article {
   title: string;
-  Details: string;
+  Detail: string;
 }
 
 export default function ArticleDetails() {
@@ -34,7 +34,7 @@ export default function ArticleDetails() {
       <>
         <section className="Detail-section">
           <h2>{article.title}</h2>
-          <p><strong>Details:</strong> {article.Details}</p>
+          <p><strong>Details:</strong> {article.Detail}</p>
         </section>
         <div className="Button-section">
           <button onClick={() => router.back()} className="button">Back to List</button>
