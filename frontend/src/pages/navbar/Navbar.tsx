@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className={styles.navbar}>
-      <Link href="/" passHref legacyBehavior>
+      <Link href="/List" passHref legacyBehavior>
         <a>
           <Image 
             src={HomeIcon} 
@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
           </Link>
         </li>
         <li className={styles.navItem}>
-          <Link href="/" passHref legacyBehavior>
+          <Link href="/Analysis_Page" passHref legacyBehavior>
             <a className={styles.navLink}>Analyse</a>
           </Link>
         </li>
