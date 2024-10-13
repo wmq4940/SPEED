@@ -28,7 +28,8 @@ export default function Articles() {
         try {
           const response = await fetch(`http://localhost:8000/api/articles?sepractice=${practice}&seclaim=${claim}`);
           const data = await response.json();
-          setArticles(data);
+          const analyzedArticles = data.filter((article: Article) => article.status === 'analysed');  
+          setArticles(analyzedArticles);
         } catch (error) {
           console.error('Error fetching articles:', error);
         }
