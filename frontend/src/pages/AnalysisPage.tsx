@@ -28,7 +28,7 @@ export default function SubmittedArticles() {
       const response = await fetch('http://localhost:8000/api/articles');
       const data = await response.json();
 
-      // Filter articles with 'submitted' status and sort by 'submitted_date'
+      // Filter articles with 'moderated' status and sort by 'submitted_date'
       const submittedArticles = data
         .filter((article: Article) => article.status === 'moderated')
         .sort(
@@ -67,7 +67,7 @@ export default function SubmittedArticles() {
         },
         body: JSON.stringify({ ...selectedArticle, Detail: detailsInput, status: 'analysed' }),
       });
-      // Refresh the articles after approval
+      // Refresh the articles after submission
       handleCloseModal();
       fetchArticles(); // Re-fetch the articles
     } catch (error) {
