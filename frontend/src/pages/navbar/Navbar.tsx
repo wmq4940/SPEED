@@ -63,6 +63,11 @@ const Navbar: React.FC = () => {
                   <a className={styles.dropdownItem}>New SE Claim</a>
                 </Link>
               </li>
+              <li>
+                <Link href="/ArticleForm" passHref legacyBehavior>
+                  <a className={styles.dropdownItem}>New Article Submission</a>
+                </Link>
+              </li>
             </ul>
           )}
         </li>
