@@ -8,8 +8,8 @@ export default function ArticleForm() {
     published_date: '',
     source: '',
     DOI: '',
-    status: '',
-    submitted_date: '',
+    status: 'submitted', // Set the initial status to 'submitted' for moderation
+    submitted_date: new Date().toISOString().split('T')[0], // Automatically set the current date
     update_date: '',
     SE_Practice: '',
     SE_Claim: '',
@@ -43,7 +43,7 @@ export default function ArticleForm() {
         throw new Error('Failed to update SE information');
       }
 
-      // Submit the article data
+      // Submit the article data with status 'submitted'
       const articleResponse = await fetch('http://localhost:8000/api/articles', {
         method: 'POST',
         headers: {
@@ -56,7 +56,7 @@ export default function ArticleForm() {
         throw new Error('Failed to submit article');
       }
 
-      alert('Article submitted successfully!');
+      alert('Article submitted successfully and is awaiting moderation.');
     } catch (error) {
       console.error(error);
       alert('An error occurred while submitting the article.');
@@ -67,6 +67,7 @@ export default function ArticleForm() {
     <div className={styles.container}>
       <h1 className={styles.title}>Submit a New Article</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
+        {/* Input fields for article details */}
         <label className={styles.label}>Title</label>
         <input
           type="text"
@@ -112,36 +113,6 @@ export default function ArticleForm() {
           type="text"
           name="DOI"
           value={formData.DOI}
-          onChange={handleChange}
-          className={styles.input}
-          required
-        />
-
-        <label className={styles.label}>Status</label>
-        <input
-          type="text"
-          name="status"
-          value={formData.status}
-          onChange={handleChange}
-          className={styles.input}
-          required
-        />
-
-        <label className={styles.label}>Submitted Date</label>
-        <input
-          type="date"
-          name="submitted_date"
-          value={formData.submitted_date}
-          onChange={handleChange}
-          className={styles.input}
-          required
-        />
-
-        <label className={styles.label}>Update Date</label>
-        <input
-          type="date"
-          name="update_date"
-          value={formData.update_date}
           onChange={handleChange}
           className={styles.input}
           required
