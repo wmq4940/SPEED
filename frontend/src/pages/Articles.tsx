@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface Article {
   _id: string;  
@@ -26,7 +27,7 @@ export default function Articles() {
     const fetchArticles = async () => {
       if (practice && claim) {
         try {
-          const response = await fetch(`http://localhost:8000/api/articles?sepractice=${practice}&seclaim=${claim}`);
+          const response = await fetch(`https://backend-pi-flax-88.vercel.app/api/articles?sepractice=${practice}&seclaim=${claim}`);
           const data = await response.json();
           const analyzedArticles = data.filter((article: Article) => article.status === 'analysed');  
           setArticles(analyzedArticles);
@@ -89,7 +90,7 @@ export default function Articles() {
       ) : (
         <p>No articles found.</p>
       )}
-      <a href="http://localhost:3000/List">
+      <Link href="/List">
         <button
           className="button"
           style={{
@@ -105,7 +106,7 @@ export default function Articles() {
         >
           Go back to List
         </button>
-      </a>
+      </Link>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export default function ArticleDetails() {
     const fetchArticle = async () => {
       if (id) {
         try {
-          const response = await fetch(`http://localhost:8000/api/articles/${id}`);
+          const response = await fetch(`https://backend-pi-flax-88.vercel.app/api/articles/${id}`);
           const data = await response.json();
           setArticle(data);
         } catch (error) {

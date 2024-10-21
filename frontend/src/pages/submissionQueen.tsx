@@ -23,7 +23,7 @@ export default function SubmittedArticles() {
 
   const fetchArticles = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/articles');
+      const response = await fetch('https://backend-pi-flax-88.vercel.app/api/articles');
       const data = await response.json();
 
       // Filter articles with 'submitted' status and sort by 'submitted_date'
@@ -58,7 +58,7 @@ export default function SubmittedArticles() {
     if (!selectedArticle) return; // Guard clause
 
     try {
-      await fetch(`http://localhost:8000/api/articles/${selectedArticle._id}`, {
+      await fetch(`https://backend-pi-flax-88.vercel.app/api/articles/${selectedArticle._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export default function SubmittedArticles() {
     if (!selectedArticle) return; // Guard clause
 
     try {
-      await fetch(`http://localhost:8000/api/articles/${selectedArticle._id}`, {
+      await fetch(`https://backend-pi-flax-88.vercel.app/api/articles/${selectedArticle._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

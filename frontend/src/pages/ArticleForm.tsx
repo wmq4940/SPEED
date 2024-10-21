@@ -28,7 +28,7 @@ export default function ArticleForm() {
 
     try {
       // Check if SE_Practice or SE_Claim is new, and if so, update the database
-      const seResponse = await fetch('http://localhost:8000/api/se', {
+      const seResponse = await fetch('https://backend-pi-flax-88.vercel.app/api/se', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ export default function ArticleForm() {
       }
 
       // Submit the article data with status 'submitted'
-      const articleResponse = await fetch('http://localhost:8000/api/articles', {
+      const articleResponse = await fetch('https://backend-pi-flax-88.vercel.app/api/articles', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -17,7 +17,7 @@ export default function SEPractices() {
     // Fetch data from the API
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/se');
+        const response = await fetch('https://backend-pi-flax-88.vercel.app/api/se');
         const data = await response.json();
         setSEPractices(data);
       } catch (error) {
@@ -62,21 +62,26 @@ export default function SEPractices() {
       <p className={styles.searchMessage}>Please search for claims below:</p>
 
       <div className={styles.form}>
+        <label htmlFor="practice-select" className={styles.label}>
+          Select a practice
+        </label>
         <select
+          id="practice-select"
           value={selectedPractice}
           onChange={handlePracticeSelect}
           className={styles.select}
         >
-          <option value="">Select a practice</option>
+          <option value="">Please Select a practice</option>
           {sePractices.map((practice, index) => (
             <option key={index} value={practice.SE_Practice}>
-              {practice.SE_Practice}
-            </option>
+            {practice.SE_Practice}
+          </option>
           ))}
         </select>
 
         {selectedPractice && selectedPracticeObj && (
           <select
+            
             value={selectedClaim}
             onChange={handleClaimSelect}
             className={styles.select}
